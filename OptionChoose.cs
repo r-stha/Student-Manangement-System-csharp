@@ -41,7 +41,7 @@ class OptionChoose
         {
             case "1":
                 InsertToFile.InserOperation(fileName);
-                PerformOperationAgain(fileName);
+    
                 break;
 
             case "2":

@@ -12,3 +12,4 @@ C:\Users\97798\Documents\std\obj\Debug\net9.0\refint\std.dll
 C:\Users\97798\Documents\std\obj\Debug\net9.0\std.pdb
 C:\Users\97798\Documents\std\obj\Debug\net9.0\std.genruntimeconfig.cache
 C:\Users\97798\Documents\std\obj\Debug\net9.0\ref\std.dll
+C:\Users\97798\Documents\std\obj\Debug\net9.0\std.sourcelink.json
