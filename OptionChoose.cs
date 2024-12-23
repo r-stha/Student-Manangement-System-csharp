@@ -50,6 +50,7 @@ class OptionChoose
 
             case "3":
                 Console.WriteLine("Exiting....");
+                Environment.Exit(0);
                 break;
 
             default:
