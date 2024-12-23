@@ -19,7 +19,7 @@ class InsertToFile
         }
     }
 
-    public static void WriteToFile(string FileName, int i)
+    public static void WriteToFile(string fileName, int i)
     {
 
         try
@@ -27,7 +27,7 @@ class InsertToFile
 
             (int id, string name, int grade) = Input.TakeStudentData(i);
 
-            using StreamWriter streamWriter = new(FileName, true);
+            using StreamWriter streamWriter = new(fileName, true);
             streamWriter.WriteLine($"Student: {1}:");
             streamWriter.WriteLine($"id: {id}");
             streamWriter.WriteLine($"Name: {name}");
@@ -46,7 +46,7 @@ class InsertToFile
 
     }
 
-    public static void WriteAgain(int i, string FileName)
+    public static void WriteAgain(int i, string fileName)
     {
         bool continueWriting = true;
 
@@ -59,7 +59,7 @@ class InsertToFile
             {
                 continueWriting = true;
 
-                WriteToFile(FileName, i);
+                WriteToFile(fileName, i);
 
                 i++;
 
@@ -71,7 +71,7 @@ class InsertToFile
         }
     }
 
-    public static void InserOperation(string FileName)
+    public static void InserOperation(string fileName)
     {
         Console.WriteLine("Enter the number of data of Students to Enter:");
         int NumberOfData = GetValidInput();
@@ -80,10 +80,10 @@ class InsertToFile
         for (i = 1; i <= NumberOfData; i++)
         {
 
-            WriteToFile(FileName, i);
+            WriteToFile(fileName, i);
 
         }
-        WriteAgain(i, FileName);
+        WriteAgain(i, fileName);
 
 
 
@@ -92,6 +92,8 @@ class InsertToFile
         Console.WriteLine("Press any key to continue.....");
         Console.ReadKey();
         
+        OptionChoose.PerformOperationAgain(fileName);
+
     }
 
 }
