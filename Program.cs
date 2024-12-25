@@ -4,11 +4,11 @@
     {
 
         Menu.FileTypeMenu();
-        string? fileName = OptionChoose.FileChoice();
+        (string? fileName, string? tempFile) = OptionChoose.FileChoice();
 
         Console.Clear();
         Menu.OperationMenu();
-        OptionChoose.OperationOptionChoose(fileName);
+        OptionChoose.OperationOptionChoose(fileName, tempFile);
 
         return 0;
 

@@ -1,6 +1,6 @@
 class Menu
 {
-     public static void FileTypeMenu()
+    public static void FileTypeMenu()
     {
         Console.WriteLine("Enter the file type to write the data:");
         Console.WriteLine("1. Text file");
@@ -12,8 +12,9 @@ class Menu
     {
         Console.WriteLine("1. Insert");
         Console.WriteLine("2. Read");
-        Console.WriteLine("3. Exit");
+        Console.WriteLine("3. Delete");
+        Console.WriteLine("4. Exit");
     }
 
-   
+
 }

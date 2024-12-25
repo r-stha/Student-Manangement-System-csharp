@@ -21,6 +21,8 @@ class Input
 
     public static (int, string, int) TakeStudentData(int i)
     {
+        Console.Clear();
+
         Console.WriteLine($"Enter the id of the {i} Student:");
         int id = GetValidInput();
 
