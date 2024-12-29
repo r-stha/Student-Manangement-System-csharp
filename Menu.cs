@@ -16,5 +16,11 @@ class Menu
         Console.WriteLine("4. Exit");
     }
 
+    public static void DeleteMenu()
+    {
+        Console.WriteLine("1. Delete by ID");
+        Console.WriteLine("2. Delete All");
+    }
+
 
 }

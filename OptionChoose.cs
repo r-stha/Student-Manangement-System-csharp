@@ -1,40 +1,31 @@
 class OptionChoose
 {
-    public static (string, string) FileChoice()
+    public static void FileChoice(out string fileName, out string tempFile)
     {
-        string? fileName = "";
-        string? tempFile = "";
+
         switch (Console.ReadLine())
         {
             case "1":
-                fileName = @"C:\Users\97798\Documents\std\Students Record\Student.txt";
+                fileName = @"C:\Users\97798\Documents\std\Students_Record\Student.txt";
                 tempFile = "temp.txt";
                 break;
 
             case "2":
-                fileName = @"C:\Users\97798\Documents\std\Students Record\Student.json";
+                fileName = @"C:\Users\97798\Documents\std\Students_Record\Student.json";
                 tempFile = "temp.json";
                 break;
 
             case "3":
-                fileName = @"C:\Users\97798\Documents\std\Students Record\Student.XML";
+                fileName = @"C:\Users\97798\Documents\std\Students_Record\Student.XML";
                 tempFile = "temp.XML";
                 break;
 
             default:
                 Console.WriteLine("INVALID OPTIon");
+                fileName = "";
+                tempFile = "";
                 break;
 
-        }
-
-        try
-        {
-            return (fileName, tempFile);
-        }
-        catch (NullReferenceException error)
-        {
-            Console.WriteLine(error.Message);
-            return ("", "");
         }
 
     }
@@ -55,14 +46,18 @@ class OptionChoose
                 break;
 
             case "3":
-                Console.WriteLine("Enter the id of the student to delete the record: ");
-                int id = Input.GetValidInput();
-                Delete.DeleteFromFile(fileName, tempFile,id);
+                Menu.DeleteMenu();
+                DeleteOperation(fileName, tempFile);
+                Environment.Exit(0);
                 break;
 
             case "4":
                 Console.WriteLine("Exiting....");
                 Environment.Exit(0);
+                break;
+
+            case "5":
+                Delete.DeleteAll(fileName, tempFile);
                 break;
 
             default:
@@ -93,10 +88,51 @@ class OptionChoose
             else
             {
                 wantToStop = true;
-                Console.WriteLine("Exiting...");
+                Console.WriteLine("Exiting......");
             }
         }
 
+    }
+
+    public static void DeleteOperation(string fileName, string tempFile)
+    {
+        switch (Console.ReadLine())
+        {
+            case "1":
+                Console.WriteLine("Enter the id of the student to delete the record: ");
+                int id = Input.GetValidInput();
+                Delete.DeleteFromFile(fileName, tempFile, id);
+                break;
+
+            case "2":
+                Console.WriteLine("Are you Sure you want to delete All data Of Student (y/n):");
+                Conformation(Console.ReadLine(), fileName, tempFile);
+
+                break;
+
+            default:
+                Console.WriteLine("Invalid Option.");
+                break;
+
+        }
+
+    }
+
+    public static void Conformation(string? choice, string fileName, string tempFile)
+    {
+        if (choice == "y" || choice == "Y")
+        {
+            Delete.DeleteAll(fileName, tempFile);
+        }
+        else
+        {
+            Console.WriteLine("Deletion Cancalled!!");
+            Console.WriteLine("Press any key to continue:");
+            Console.ReadKey();
+            Console.Clear();
+            
+            PerformOperationAgain(fileName, tempFile);
+        }
     }
 
 }

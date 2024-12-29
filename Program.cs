@@ -1,16 +1,14 @@
 ﻿class MainProgram
 {
-    public static int Main()
+    public static void Main()
     {
 
         Menu.FileTypeMenu();
-        (string? fileName, string? tempFile) = OptionChoose.FileChoice();
+        OptionChoose.FileChoice(out string? fileName, out string? tempFile);
 
         Console.Clear();
         Menu.OperationMenu();
         OptionChoose.OperationOptionChoose(fileName, tempFile);
-
-        return 0;
 
     }
 }

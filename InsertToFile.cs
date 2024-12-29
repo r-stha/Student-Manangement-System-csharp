@@ -24,11 +24,11 @@ class InsertToFile
         {
             using StreamWriter streamWriter = new(fileName, true);
 
-            (int id, string name, int grade) = Input.TakeStudentData(i);
+            Input.TakeStudentData(i, out int id, out string? name, out int grade);
 
             streamWriter.WriteLine($"id: {id}");
             streamWriter.WriteLine($"Name: {name}");
-            streamWriter.WriteLine($"Section: {grade}  \n");
+            streamWriter.WriteLine($"Grade: {grade}\n");
         }
         catch (FileNotFoundException error)
         {
@@ -38,8 +38,6 @@ class InsertToFile
         {
             Console.WriteLine(error.Message);
         }
-
-
 
     }
 

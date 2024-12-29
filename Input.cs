@@ -19,25 +19,18 @@ class Input
         }
     }
 
-    public static (int, string, int) TakeStudentData(int i)
+    public static void TakeStudentData(int i, out int id, out string? name, out int grade)
     {
         Console.Clear();
 
         Console.WriteLine($"Enter the id of the {i} Student:");
-        int id = GetValidInput();
+        id = GetValidInput();
 
         Console.WriteLine($"Enter the name of the {i} Student:");
-        string? name = Console.ReadLine();
+        name = Console.ReadLine();
 
         Console.WriteLine($"Enter the Grade of the {i} Student:");
-        int grade = GetValidInput();
-
-        if (name is not null)
-            return (id, name, grade);
-
-        return (0, "", 0);
-
-
+        grade = GetValidInput();
 
     }
 }
