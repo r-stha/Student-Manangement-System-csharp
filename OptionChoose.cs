@@ -1,23 +1,49 @@
 class OptionChoose
 {
+
+    public static string GetFullDirectoryPath(string directoryPath)
+    {
+        try
+        {
+            directoryPath = Path.GetFullPath(directoryPath);
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
+        }
+        catch (UnauthorizedAccessException error)
+        {
+            Console.WriteLine(error.Message);
+            throw;
+        }
+        catch (Exception error)
+        {
+            Console.WriteLine($"Failes to create directory: {error.Message}");
+            throw;
+        }
+        return directoryPath;
+    }
+
     public static void FileChoice(out string fileName, out string tempFile)
     {
+
+        string directoryPath = GetFullDirectoryPath("Students_Record");
 
         switch (Console.ReadLine())
         {
             case "1":
-                fileName = @"C:\Users\97798\Documents\std\Students_Record\Student.txt";
-                tempFile = "temp.txt";
+                fileName = Path.Combine(directoryPath, "Student.txt");
+                tempFile = Path.Combine(directoryPath, "temp.txt");
                 break;
 
             case "2":
-                fileName = @"C:\Users\97798\Documents\std\Students_Record\Student.json";
-                tempFile = "temp.json";
+                fileName = Path.Combine(directoryPath, "Student.json");
+                tempFile = Path.Combine(directoryPath, "temp.json");
                 break;
 
             case "3":
-                fileName = @"C:\Users\97798\Documents\std\Students_Record\Student.XML";
-                tempFile = "temp.XML";
+                fileName = Path.Combine(directoryPath, "Student.XML");
+                tempFile = Path.Combine(directoryPath, "temp.XML");
                 break;
 
             default:
@@ -43,6 +69,7 @@ class OptionChoose
 
             case "2":
                 ReadFromFile.Read(fileName, tempFile);
+                Environment.Exit(0);
                 break;
 
             case "3":
@@ -58,6 +85,7 @@ class OptionChoose
 
             case "5":
                 Delete.DeleteAll(fileName, tempFile);
+                Environment.Exit(0);
                 break;
 
             default:
@@ -130,7 +158,7 @@ class OptionChoose
             Console.WriteLine("Press any key to continue:");
             Console.ReadKey();
             Console.Clear();
-            
+
             PerformOperationAgain(fileName, tempFile);
         }
     }
