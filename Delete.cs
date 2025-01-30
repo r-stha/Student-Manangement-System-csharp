@@ -19,16 +19,13 @@ class Delete
                 skipData = true;
 
             }
-
-            if (skipData)
+            else if (skipData && (data =="" || data == "\n"))
             {
-                if (data == "" || data == "\n")
-                {
-                    skipData = false;
-                }
+                skipData =false;
                 continue;
-
             }
+
+            if(!skipData)
             writer.WriteLine(data);
 
         }
