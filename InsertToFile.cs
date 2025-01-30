@@ -1,6 +1,5 @@
 class InsertToFile
 {
-
     public static int GetValidInput()
     {
         while (true)
@@ -19,19 +18,17 @@ class InsertToFile
         }
     }
 
-    public static void WriteToFile(string FileName, int i)
+    public static void WriteToFile(string fileName, int i)
     {
-
         try
         {
+            using StreamWriter streamWriter = new(fileName, true);
 
-            (int id, string name, int grade) = Input.TakeStudentData(i);
+            Input.TakeStudentData(i, out int id, out string? name, out int grade);
 
-            using StreamWriter streamWriter = new(FileName, true);
-            streamWriter.WriteLine($"Student: {1}:");
             streamWriter.WriteLine($"id: {id}");
             streamWriter.WriteLine($"Name: {name}");
-            streamWriter.WriteLine($"Section: {grade}  \n");
+            streamWriter.WriteLine($"Grade: {grade}\n");
         }
         catch (FileNotFoundException error)
         {
@@ -42,11 +39,9 @@ class InsertToFile
             Console.WriteLine(error.Message);
         }
 
-
-
     }
 
-    public static void WriteAgain(int i, string FileName)
+    public static void WriteAgain(int i, string fileName)
     {
         bool continueWriting = true;
 
@@ -55,11 +50,13 @@ class InsertToFile
             Console.WriteLine("Do you want to Enter the data of the student again (y/n):");
             string? writingChoice = Console.ReadLine();
 
+
             if (writingChoice == "y" || writingChoice == "Y")
             {
                 continueWriting = true;
 
-                WriteToFile(FileName, i);
+                Console.Clear();
+                WriteToFile(fileName, i);
 
                 i++;
 
@@ -71,7 +68,7 @@ class InsertToFile
         }
     }
 
-    public static void InserOperation(string FileName)
+    public static void InserOperation(string fileName, string tempFile)
     {
         Console.WriteLine("Enter the number of data of Students to Enter:");
         int NumberOfData = GetValidInput();
@@ -80,10 +77,10 @@ class InsertToFile
         for (i = 1; i <= NumberOfData; i++)
         {
 
-            WriteToFile(FileName, i);
+            WriteToFile(fileName, i);
 
         }
-        WriteAgain(i, FileName);
+        WriteAgain(i, fileName);
 
 
 
@@ -91,7 +88,9 @@ class InsertToFile
         Console.WriteLine("Contents Written Successfully");
         Console.WriteLine("Press any key to continue.....");
         Console.ReadKey();
-        
+
+        OptionChoose.PerformOperationAgain(fileName, tempFile);
+
     }
 
 }

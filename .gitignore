@@ -1,0 +1,8 @@
+# Contains the final output of the program.
+bin
+
+# Contains temporary folder while executing the program.
+obj
+
+# Contains all data of the student
+Students_Record

@@ -1,8 +1,8 @@
 class ReadFromFile
 {
-    public static void Read(string FileName)
+    public static void Read(string fileName, string tempFile)
     {
-        StreamReader reader = new(FileName);
+        StreamReader reader = new(fileName);
 
         try
         {
@@ -23,6 +23,7 @@ class ReadFromFile
                 }
             }
             reader.Close();
+            OptionChoose.PerformOperationAgain(fileName, tempFile);
         }
         catch (FileNotFoundException error)
         {
